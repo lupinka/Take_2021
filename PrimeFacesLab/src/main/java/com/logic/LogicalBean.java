@@ -6,11 +6,16 @@
 package com.logic;
 
 import java.io.Serializable;
+import static java.lang.Math.sin;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import java.time.LocalDateTime; 
 import java.util.ArrayList;
 import java.util.List;
+import org.primefaces.model.chart.Axis;
+import org.primefaces.model.chart.AxisType;
+import org.primefaces.model.chart.LineChartModel;
+import org.primefaces.model.chart.LineChartSeries;
 
 /**
  *
@@ -21,12 +26,14 @@ import java.util.List;
 public class LogicalBean {
     private int number1, number2, sum;
     private List<Student> students;
+    private LineChartModel lineModel;
 
     /**
      * Creates a new instance of LogicalBean
      */
     public LogicalBean() {
         addStudents();
+        createCharts();
     }
     
     private void addStudents()
@@ -40,6 +47,31 @@ public class LogicalBean {
         students.add(student2);
         students.add(student3);
         students.add(student4);
+    }
+    
+    private void createCharts()
+    {
+        lineModel = new LineChartModel();
+        LineChartSeries s = new LineChartSeries();
+        s.setLabel("Sinus");
+
+        for (int i=0; i<=360; i=i+10)
+        {
+            s.set(i, sin(Math.toRadians(i)));
+        }
+        lineModel.addSeries(s);
+        lineModel.setLegendPosition("e");
+        lineModel.setZoom(true);
+        Axis y = lineModel.getAxis(AxisType.Y);
+        y.setMin(-1);
+        y.setMax(1);
+        y.setLabel("Y");
+
+        Axis x = lineModel.getAxis(AxisType.X);
+        x.setMin(0);
+        x.setMax(360);
+        x.setTickInterval("1");
+        x.setLabel("X");
     }
     
     public void sum()
@@ -92,5 +124,9 @@ public class LogicalBean {
      */
     public List<Student> getStudents() {
         return students;
+    }
+    
+    public LineChartModel getLineModel() {
+      return lineModel;
     }
 }
