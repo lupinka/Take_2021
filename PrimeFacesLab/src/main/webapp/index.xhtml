@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <p:tabView>
+            <p:tab title="Form">
+                <h:form>
+                    <p:spinner id="add1"
+                               min="0"
+                               max="42" 
+                               value="#{logicalBean.number1}"/>
+                     + 
+                     <p:spinner id="add2" 
+                                min="0" 
+                                max="42" 
+                                value="#{logicalBean.number2}"/>
+                    <p:commandButton value="Calculate" 
+                                     update="sum" 
+                                     action="#{logicalBean.sum()}"/>
+                    <h:outputText id="sum" 
+                                  value="#{logicalBean.sum}"/>
+                </h:form>
+                <h:outputText id="date" 
+                              value="#{logicalBean.date}"/>
+            </p:tab>
+            <p:tab title="Table">
+                <p:dataTable var="student" value="#{logicalBean.students}">
+                    <p:columns value="#{logicalBean.columns}" var="column" columnIndexVar="colIndex">
+                    <f:facet name="header">
+                        #{column.header}
+                    </f:facet>
+                        #{student[column.property]}
+                    </p:columns>
+                </p:dataTable>
+            </p:tab>
+            <p:tab title="Chart"/>
+        </p:tabView>
+    </h:body>
+</html>
+
