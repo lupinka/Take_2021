@@ -35,6 +35,9 @@
                     </f:facet>
                     <h:outputText value="#{item.requestText}"/>
                 </h:column>
+                <h:column>
+                    <h:commandButton value="Remove request" action="#{requestsList.deleteRequest()}"/>
+                </h:column>
             </h:dataTable>
         </h:form>
     </h:body>

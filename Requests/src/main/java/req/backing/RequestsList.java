@@ -45,6 +45,7 @@ public class RequestsList {
         return null;
     } 
 
+    @Transactional
     public String deleteRequest() {
         Request req = (Request) getRequestsDataTable().getRowData();
         requestFacade.remove(req);
