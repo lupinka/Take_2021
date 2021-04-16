@@ -7,6 +7,10 @@ package view.backing;
 
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.component.html.HtmlCommandButton;
+import javax.faces.component.html.HtmlSelectBooleanCheckbox;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 
 /**
  *
@@ -16,12 +20,25 @@ import javax.enterprise.context.RequestScoped;
 @RequestScoped
 public class LoginBean {
     private String username, password;
+    private HtmlSelectBooleanCheckbox acceptCheckbox;
+    private HtmlCommandButton loginButton;
 
     /**
      * Creates a new instance of LoginBean
      */
     public LoginBean() {
     }
+    
+    public void activateButton(ValueChangeEvent e)
+    {
+        if (acceptCheckbox.isSelected())
+            loginButton.setDisabled(false);
+        else
+            loginButton.setDisabled(true);
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.renderResponse(); 
+    }
+
     
     public String login() {
         if (username.equals(password)) {
@@ -57,6 +74,34 @@ public class LoginBean {
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    /**
+     * @return the acceptCheckbox
+     */
+    public HtmlSelectBooleanCheckbox getAcceptCheckbox() {
+        return acceptCheckbox;
+    }
+
+    /**
+     * @param acceptCheckbox the acceptCheckbox to set
+     */
+    public void setAcceptCheckbox(HtmlSelectBooleanCheckbox acceptCheckbox) {
+        this.acceptCheckbox = acceptCheckbox;
+    }
+
+    /**
+     * @return the loginButton
+     */
+    public HtmlCommandButton getLoginButton() {
+        return loginButton;
+    }
+
+    /**
+     * @param loginButton the loginButton to set
+     */
+    public void setLoginButton(HtmlCommandButton loginButton) {
+        this.loginButton = loginButton;
     }
     
 }
