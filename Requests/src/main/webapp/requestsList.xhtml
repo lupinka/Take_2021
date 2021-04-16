@@ -10,7 +10,7 @@
         <h:form>
             <h:outputText value="New Request"/>
             <h:inputText id="newReqInputText" 
-                         value="#{requestsList.allRequests}"/>
+                         value="#{requestsList.newRequest}"/>
             <h:commandButton value="Add"
                              action="#{requestsList.addRequest()}"/>
             <h:dataTable value="#{requestsList.allRequests}" 

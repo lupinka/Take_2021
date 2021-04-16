@@ -5,10 +5,24 @@
  */
 package req.facade;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import req.entities.Request;
+
 /**
  *
  * @author anna
  */
-public class RequestFacade {
-    
+public class RequestFacade extends AbstractFacade<Request> {
+    @PersistenceContext(unitName = "RequestsPU")
+    private EntityManager em;
+
+    @Override
+    protected EntityManager getEntityManager() {
+        return em;
+    }
+
+    public RequestFacade() {
+        super(Request.class);
+    } 
 }

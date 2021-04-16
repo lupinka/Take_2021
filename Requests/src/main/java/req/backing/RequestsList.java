@@ -11,7 +11,9 @@ import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.component.html.HtmlDataTable;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import req.entities.Request;
+import req.facade.RequestFacade;
 
 /**
  *
@@ -20,7 +22,7 @@ import req.entities.Request;
 @Named(value = "requestsList")
 @RequestScoped
 public class RequestsList {
-    @Inject private RequestFacadeLocal requestFacade;
+    @Inject private RequestFacade requestFacade;
 
     /**
      * Creates a new instance of RequestsList
@@ -32,16 +34,22 @@ public class RequestsList {
         return requestFacade.findAll();
     }
     
+    @Transactional
     public String addRequest()
     {
         Request request = new Request();
-        request.setRequestDate(LocalDate.MAX);
+        request.setRequestDate(LocalDate.now());
         request.setRequestText(newRequest);
-        requestFacade.add(request);
+        requestFacade.create(request);
         setNewRequest("");
         return null;
     } 
 
+    public String deleteRequest() {
+        Request req = (Request) getRequestsDataTable().getRowData();
+        requestFacade.remove(req);
+        return null;
+    }
     private String newRequest;
 
     /**
