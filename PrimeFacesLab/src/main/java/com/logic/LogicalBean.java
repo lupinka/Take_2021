@@ -21,14 +21,12 @@ import java.util.List;
 public class LogicalBean {
     private int number1, number2, sum;
     private List<Student> students;
-    private List<ColumnModel> columns;
 
     /**
      * Creates a new instance of LogicalBean
      */
     public LogicalBean() {
         addStudents();
-        createDynamicColumns();
     }
     
     private void addStudents()
@@ -42,13 +40,6 @@ public class LogicalBean {
         students.add(student2);
         students.add(student3);
         students.add(student4);
-    }
-    
-     private void createDynamicColumns() {
-        setColumns(new ArrayList<>());
-        getColumns().add(new ColumnModel("Name", "name"));
-        getColumns().add(new ColumnModel("Surname", "surname"));
-        getColumns().add(new ColumnModel("Average", "average"));
     }
     
     public void sum()
@@ -101,38 +92,5 @@ public class LogicalBean {
      */
     public List<Student> getStudents() {
         return students;
-    }
-    
-    static public class ColumnModel implements Serializable {
-
-        private String header;
-        private String property;
-
-        public ColumnModel(String header, String property) {
-            this.header = header;
-            this.property = property;
-        }
-
-        public String getHeader() {
-            return header;
-        }
-
-        public String getProperty() {
-            return property;
-        }
-    }
-
-    /**
-     * @return the columns
-     */
-    public List<ColumnModel> getColumns() {
-        return columns;
-    }
-
-    /**
-     * @param columns the columns to set
-     */
-    public void setColumns(List<ColumnModel> columns) {
-        this.columns = columns;
     }
 }
