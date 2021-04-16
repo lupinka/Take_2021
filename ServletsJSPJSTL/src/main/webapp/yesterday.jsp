@@ -33,7 +33,8 @@
         Released: <fmt:formatDate value="${releaseDate}" type="date" dateStyle="short"/>
         </p>
         <c:if test="${!empty members}">
-        <table border>
+        <table border="$(${bean.frame == "tak"} ? "1" : "0")"}}>
+
         <tr><th>The Beatles</th></tr>
         <c:forEach var="member" items="${members}">
         <tr><td>${member}</td></tr>

@@ -2,6 +2,7 @@ package ai.beans;
 public class ColorBean {
  private String foregroundColor;
  private String backgroundColor;
+ private String frame;
 
  public ColorBean() {
  }
@@ -32,5 +33,19 @@ public class ColorBean {
      */
     public void setBackgroundColor(String backgroundColor) {
         this.backgroundColor = backgroundColor;
+    }
+
+    /**
+     * @return the frame
+     */
+    public String getFrame() {
+        return frame;
+    }
+
+    /**
+     * @param frame the frame to set
+     */
+    public void setFrame(String frame) {
+        this.frame = frame;
     }
 }

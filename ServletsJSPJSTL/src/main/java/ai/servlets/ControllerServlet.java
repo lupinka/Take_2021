@@ -24,6 +24,7 @@ public class ControllerServlet extends HttpServlet {
         ColorBean myBean = new ColorBean();
         myBean.setForegroundColor( request.getParameter("foreColor") );
         myBean.setBackgroundColor( request.getParameter("backColor") );
+        myBean.setFrame( request.getParameter("frame") );
         request.setAttribute("bean", myBean);
         
         ArrayList members = new ArrayList();
