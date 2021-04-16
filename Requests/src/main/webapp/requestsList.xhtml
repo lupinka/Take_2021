@@ -8,9 +8,15 @@
     </h:head>
     <h:body>
         <h:form>
+            <h:outputText value="New Request"/>
+            <h:inputText id="newReqInputText" 
+                         value="#{requestsList.allRequests}"/>
+            <h:commandButton value="Add"
+                             action="#{requestsList.addRequest()}"/>
             <h:dataTable value="#{requestsList.allRequests}" 
                          var="item"
-                         border="1">
+                         border="1"
+                         binding="#{requestsList.requestsDataTable}">
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Id"/>
