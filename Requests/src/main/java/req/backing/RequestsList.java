@@ -12,6 +12,8 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.component.html.HtmlDataTable;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import req.entities.Request;
 import req.facade.RequestFacade;
 
@@ -58,6 +60,8 @@ public class RequestsList {
      *
      * @return the value of newRequest
      */
+    @NotNull
+    @Size(min=3, max=60, message="Request text must be from 3 to 60 characters long.")
     public String getNewRequest() {
         return newRequest;
     }

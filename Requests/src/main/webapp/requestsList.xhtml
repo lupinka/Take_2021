@@ -13,6 +13,7 @@
                          value="#{requestsList.newRequest}"/>
             <h:commandButton value="Add"
                              action="#{requestsList.addRequest()}"/>
+            <h:message for="newReqInputText"/>
             <h:dataTable value="#{requestsList.allRequests}" 
                          var="item"
                          border="1"
