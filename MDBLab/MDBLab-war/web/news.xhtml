@@ -7,31 +7,33 @@
         <title>News</title>
     </h:head>
     <h:body>
-        <h:outputText value="Naglowek"/>
-        <h:inputText id="headingInputText" value="#{newsBean.headingText}"/>
-        <h:outputText value="Tresc"/>
-        <h:inputText id="bodyInputText" value="#{newsBean.bodyText}"/>
-        <h:commandButton id="submitButton"/>
-        <h:dataTable value="#{newsBean.newsItems}" var="item">
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Id"/>
-                </f:facet>
-                <h:outputText value="#{item.id}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Heading"/>
-                </f:facet>
-                <h:outputText value="#{item.heading}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Body"/>
-                </f:facet>
-                <h:outputText value="#{item.body}"/>
-            </h:column>
-        </h:dataTable>
+        <h:form>   
+            <h:outputText value="Naglowek"/>
+            <h:inputText id="headingInputText" value="#{newsBean.headingText}"/>
+            <h:outputText value="Treść"/>
+            <h:inputText id="bodyInputText" value="#{newsBean.bodyText}"/>
+            <h:commandButton id="submitButton" value="Wyślij" action="#{newsBean.submitNews()}"/>
+            <h:dataTable value="#{newsBean.newsItems}" var="item">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Id"/>
+                    </f:facet>
+                    <h:outputText value="#{item.id}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Heading"/>
+                    </f:facet>
+                    <h:outputText value="#{item.heading}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Body"/>
+                    </f:facet>
+                    <h:outputText value="#{item.body}"/>
+                </h:column>
+            </h:dataTable>
+        </h:form>
 
     </h:body>
 </html>

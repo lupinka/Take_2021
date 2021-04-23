@@ -7,3 +7,6 @@
 /MDBLab/MDBLab-ejb/build/
 /MDBLab/MDBLab-war/build/
 /MDBLab/MDBLab-ejb/dist/
+/MDBLab/build/
+/MDBLab/MDBLab-war/dist/
+/MDBLab/dist
