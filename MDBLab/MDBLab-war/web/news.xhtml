@@ -8,10 +8,8 @@
     </h:head>
     <h:body>
         <h:form>   
-            <h:outputText value="Naglowek"/>
+            <h:outputText value="Naglowek|Treść"/>
             <h:inputText id="headingInputText" value="#{newsBean.headingText}"/>
-            <h:outputText value="Treść"/>
-            <h:inputText id="bodyInputText" value="#{newsBean.bodyText}"/>
             <h:commandButton id="submitButton" value="Wyślij" action="#{newsBean.submitNews()}"/>
             <h:dataTable value="#{newsBean.newsItems}" var="item">
                 <h:column>
