@@ -18,5 +18,8 @@ namespace MvcNews.Models
 		[StringLength(140, ErrorMessage = "Text must be between 5 and 140 characters", MinimumLength =5)]
 		public string Text { get; set; }
 
+		[Timestamp]
+		public byte[] RowVersion;
+
 	}
 }
