@@ -12,3 +12,8 @@
 /MDBLab/dist
 /Complaints/target/
 /ComplaintsClient/target/
+
+/MvcNews/MvcNews/wwwroot
+/MvcNews/MvcNews/bin
+/MvcNews/MvcNews/obj
+/MvcNews/.vs/MvcNews
