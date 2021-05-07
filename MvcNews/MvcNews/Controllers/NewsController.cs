@@ -109,7 +109,8 @@ namespace MvcNews.Controllers
                     }
                     else
                     {
-                        throw;
+                        ModelState.AddModelError("", "There was a change made by another user");
+                        return RedirectToAction(nameof(Edit));
                     }
                 }
                 return RedirectToAction(nameof(Index));
