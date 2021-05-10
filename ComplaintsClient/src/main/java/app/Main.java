@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -30,6 +31,7 @@ public class Main {
 
         System.out.println("Count: " + count);
         
+        //Zadanie 6a
         String complaints =
         client.target("http://localhost:8080/Complaints/" +
          "resources/complaint")
@@ -38,24 +40,24 @@ public class Main {
 
         System.out.println("Complaints: " + complaints);
         
-        System.out.println("Id of complaint:");
-        String complaintId="";
-        BufferedReader reader = new BufferedReader(
-            new InputStreamReader(System.in)); 
-        try {
-            complaintId = reader.readLine();
-        } catch (IOException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        //Zadanie 6b
+        String complaintId="906";
         
-        String complaint =
+        Complaint complaint =
         client.target("http://localhost:8080/Complaints/" +
          "resources/complaint/"+complaintId)
         .request(MediaType.APPLICATION_JSON)
-        .get(String.class);
+        .get(Complaint.class);
 
-        System.out.println("Complaint with id "+complaintId+": " + complaint);
-        
+        System.out.println("Complaint with id "+complaintId+": " + complaint.toString());
+        //Zadanie 6c
+        complaint.setStatus("closed");
+        client.target("http://localhost:8080/Complaints/" +
+         "resources/complaint/"+complaintId)
+        .request(MediaType.APPLICATION_JSON)
+        .put(Entity.entity(complaint, MediaType.APPLICATION_JSON));
+
+        //Zadanie 6d
         String openedComplaints =
         client.target("http://localhost:8080/Complaints/" +
          "resources/complaint?status=open")
