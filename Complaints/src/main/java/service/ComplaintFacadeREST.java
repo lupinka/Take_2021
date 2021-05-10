@@ -19,6 +19,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -53,7 +54,14 @@ public class ComplaintFacadeREST extends AbstractFacade<Complaint> {
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void edit(@PathParam("id") Long id, Complaint entity) {
-        super.edit(entity);
+        Complaint complaint = super.find(id);
+        if (complaint == null) {
+            throw new WebApplicationException("Can't find it", 404);
+        }
+        complaint.setAuthor(entity.getAuthor());
+        complaint.setComplaintDate(entity.getComplaintDate());
+        complaint.setComplaintText(entity.getComplaintText());
+        complaint.setStatus(entity.getStatus());
     }
 
     @DELETE
