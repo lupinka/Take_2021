@@ -29,6 +29,7 @@ namespace StudentsApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<StudentContext>(opt=>opt.UseInMemoryDatabase("StudentList"));
+            services.AddCors();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -48,6 +49,9 @@ namespace StudentsApi
 
             //app.UseHttpsRedirection();
 
+            app.UseCors( options => options.WithOrigins("http://localhost:4200")
+            .AllowAnyMethod()
+            .AllowAnyHeader());            
             app.UseRouting();
 
             app.UseAuthorization();
